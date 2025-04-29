@@ -4,16 +4,22 @@ const { GoogleGenAI } = require('@google/genai');
 
 // Initialize the ai instance with your API key
 const ai = new GoogleGenAI({ apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8" });
+//for movie data
+let listOfGenres = ["Action","Comedy","Romance","Crime","Thriller","Horror","Adventure","Drama","Mystery"];
+let randomIndex = Math.floor(Math.random() * listOfGenres.length);
 const options = {
   method: 'GET',
   url: 'https://imdb236.p.rapidapi.com/imdb/search',
   params: {
     type: 'movie',
-    genre: 'Drama',
-    rows: '1',
-    sortOrder: 'ASC',
-    sortField: 'id',
-    
+    genre: `${listOfGenres[randomIndex]}`,
+    averageRatingFrom: '8',
+    numVotesFrom: '2000',
+    startYearFrom: '2010',
+    rows: '50',
+    spokenLanguages: 'ta',
+    sortOrder: 'DESC',
+    sortField: 'averageRating'
   },
   headers: {
     'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
@@ -21,17 +27,42 @@ const options = {
   }
 };
 
+
 async function fetchData() {
 	try {
 		const response = await axios.request(options);
-    const movie = response.data.results[0];
-    const title = movie.primaryTitle;
+    const movie = response.data.results[randomIndex];
+    const title = movie.originalTitle;
     const movieDescription = movie.description;
     const movieId= movie.id;
     const genres = movie.genres; 
     const releaseYear = movie.startYear;
     const spokenLanguages = movie.spokenLanguages; 
-    
+    //for cast of a movie
+      const optionsforcast = {
+      method: 'GET',
+      url: `https://imdb236.p.rapidapi.com/imdb/${movieId}/cast`,
+      headers: {
+        'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
+        'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+      }
+        };
+        
+    const castresponse = await axios.request(optionsforcast);
+    //console.log(castresponse);
+    const actors = [];
+    const crew = [];
+
+    castresponse.data.forEach(person => {
+      if (person.job === "actor" || person.job === "actress") {
+        actors.push(person.fullName);
+      } else if (["director", "writer"].includes(person.job)) {
+        crew.push(person.fullName);
+      }
+    });
+
+    // console.log("Actors:", actors);
+    // console.log("Crew:", crew);
 
 async function generateQuestion() {
   
@@ -40,9 +71,13 @@ async function generateQuestion() {
   Genres: ${genres.join(', ')}
   Release Year: ${releaseYear}
   Genres : ${genres}
+  cast : ${crew}
+  actors :${actors}
   See Iam preparing a movie guess kinda game , i will give the data, you give the description based Text to guess the movie,and three clues
   to help it, You just have to understand the description i give , remove the character name , and understand the context of the movie, by telling 
-  the plot you will have to give the prompt.
+  the plot you will have to give the prompt.The description should be maximum of two lines .simple clue are good , i will give the cast and crew , in clue one 
+  tell about the movie ,year of relese or genre mixed.second one should be The director and writers.third one should be actors. just two or three main 
+  actors.
   
   Task:
   1. Create a guess-the-movie question based on the above.
@@ -57,19 +92,6 @@ async function generateQuestion() {
   console.log(response.text);
   }
   generateQuestion()
-		//console.log(response.data);
-    // async function listModels() {
-    //   try {
-    //     // Get the list of available models
-    //     const response = await ai.models.listModels();
-    
-    //     // Log the available models
-    //     console.log('Available Models:', response);
-    //   } catch (error) {
-    //     console.error('Error listing models:', error);
-    //   }
-    // }
-    // listModels()
 	} catch (error) {
 		console.error(error);
 	}
