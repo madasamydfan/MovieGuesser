@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("D:\For my learning\Movie Guess\MovieGuesser\assets\martin-scorsese-1024x576.webp"); /* relative to public folder */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh; /* ensure body takes full viewport */
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 196, 196, 0.3); /* adjust for fading effect */
+    z-index: -1;
+}
+
+h1{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:xx-large;
+    text-align: center;
+    font-weight: 500;
+}
