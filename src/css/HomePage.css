@@ -1,26 +1,62 @@
-body {
+body{
     margin: 0;
     padding: 0;
-    background-image: url("D:\For my learning\Movie Guess\MovieGuesser\assets\martin-scorsese-1024x576.webp"); /* relative to public folder */
+    background-color: black;
+    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)),url("D:\For my learning\Movie Guess\MovieGuesser\assets\martin-scorsese-1024x576.webp");
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
-    height: 100vh; /* ensure body takes full viewport */
 }
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
+
+.movie-guess-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     width: 100%;
-    background-color: rgba(255, 196, 196, 0.3); /* adjust for fading effect */
-    z-index: -1;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size:xx-large;
+    font-size: 8rem;
+    text-shadow: 100cap;
+    color:rgba(255, 18, 18, 0.901);
+    font-family: "Impact";
+    opacity: 60%;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+}
+.dots::after {
+    content: '.';
+    animation: dots 1.5s steps(1, end) infinite;
+}
+@keyframes dots {
+    0%   { content: '.'; }
+    33%  { content: '..'; }
+    66%  { content: '...'; }
+    100% { content: '.'; }
+}
+
+button{
+    height: 8%;
+    width: 20%;    
+    border-radius: 15px;
     text-align: center;
-    font-weight: 500;
+    font-size: x-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    background: rgba(18, 1, 1, 0.173);
+    border: 2px;
+    letter-spacing: 2px;
+}
+
+button:hover{
+    height: 8%;
+    width: 20%;    
+    border-radius: 15px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    font-size: xx-large;
+    letter-spacing: 2px;
 }

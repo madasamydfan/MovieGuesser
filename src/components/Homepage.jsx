@@ -7,8 +7,10 @@ function HomePage(){
     }
     return (
         <>
+        <div className="movie-guess-container">
         <h1>Movie Guesser</h1>
-        <button onClick={handlegetstarted}>Get Started</button>
+        <button onClick={handlegetstarted}>AARAMIKALAAMA <span className="dots"></span></button>
+        </div>
     </>
     )
 }

@@ -50,6 +50,7 @@ async function fetchData() {
         
     const castresponse = await axios.request(optionsforcast);
     //console.log(castresponse);
+    
     const actors = [];
     const crew = [];
 
