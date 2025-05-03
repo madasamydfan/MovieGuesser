@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS Questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    imdb_id VARCHAR(30) NOT NULL UNIQUE,
+    movie_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS Clues(
+    id INT  AUTO_INCREMENT PRIMARY KEY,
+    clue TEXT NOT NULL,
+    imdb_id VARCHAR(30) NOT NULL UNIQUE,
+    FOREIGN KEY (imdb_id) REFERENCES Questions(imdb_id)
+);
