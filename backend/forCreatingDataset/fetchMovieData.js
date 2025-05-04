@@ -51,5 +51,7 @@ async function fetchMovieData(){
     //return response.data.results[0];
 }
 
-
-module.exports= {fetchMovieData};
+function reqmoviedata(){
+  fetchMovieData();
+}
+reqmoviedata()

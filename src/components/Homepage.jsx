@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import '../css/HomePage.css'
+import axios from 'axios';
+
 function HomePage(){
     const navigate = useNavigate();
-    const handlegetstarted = ()=>{
+    const handlegetstarted = async()=>{
         navigate('/movieguess')
     }
     return (

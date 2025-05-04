@@ -1,34 +1,34 @@
-const express = require('express')
-const axios = require('axios');
-const {fetchMovieData} = require('./fetchMovieData');
-const {fetchCastData} = require('./fetchCastData');
-const {generateQuestion} = require('./generateGeminiQuestion')
-const {parseGeneratedText} = require('./parseGeneratedQuestion')
-const {writeToDB} = require('./writeIntoDb')
-// Initialize the ai instance with your API key
+const express = require("express");
+const axios = require("axios");
+// const pool = require('./forCreatingDataset/db')
+const { nextClue } = require("./getNextClue");
+const { nextQuestion } = require("./getnextQuestion");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-//for movie data
+const app = express();
+app.use(cors()); // This allows all origins
+app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  return res.send("Welcome to the Rest API");
+});
 
+app.get("/movieguess", async (req, res) => {
+    const response = await nextQuestion();
+    res.json({ description: response.description, id: response.id });
+});
 
-async function fetchData() {
-	try {
-	const response = await fetchMovieData();
-    // const detailsForPrompt = await fetchCastData(response);
-	// const {title,finalText,movieId} = await generateQuestion(detailsForPrompt)
-    // // actors = cast[0];
-    // // crew = cast[1];
-    // // const MovieTitle = generateGeminiQuestion()
-	// // 
-	// const parsed = parseGeneratedText(finalText);
-	// parsed["title"] = title;
-	// parsed["movie_id"] = movieId;
-	// console.log(parsed);
-	} catch (error) {
-		console.error(error);
-	}
-	//writeToDB()
-}
+app.listen(5172, () => {
+  console.log("Server is running on port 5172");
+});
 
+//  async function  one(){
+// 	const {movie_name,imdb_id,description} = await nextQuestion()
+// 	cluenumber = 1;
+// 	console.log(movie_name,imdb_id,description);
+// 	const res = await nextClue(cluenumber,imdb_id);
+// 	console.log(res[0].clue)
+// }
 
-fetchData();
+// one()

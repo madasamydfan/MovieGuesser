@@ -28,7 +28,7 @@ async function runInitScript() {
                         FOREIGN KEY (imdb_id) REFERENCES Questions(imdb_id));`);
       
     await conn.commit();
-        console.log('Database initialized successfully');
+       // console.log('Database initialized successfully');
     }
     catch(error){
         console.log('Error running init script:',error);
