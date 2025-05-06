@@ -1,21 +1,40 @@
-const { GoogleGenAI } = require('@google/genai');
-const ai = new GoogleGenAI({ apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8" });
+const { GoogleGenAI } = require("@google/genai");
+const ai = new GoogleGenAI({
+  apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8",
+});
+const pool = require("./forCreatingDataset/db");
 
-async function checkAnswerwithAI(userAnswer,movie_name) {
-	const prompt = `I will give a userAnswer and a original Title of the Movie, You have to tell me 
-	whether the userAnswwer is refering the same movie that i give, neglect case sensitivity , spelling mistake ,if both the movies are same
-	tell me response as '1' and '0' if not.nothing more nothing less
-	${movie_name}
-	${userAnswer}
-	` 
-	const response = await ai.models.generateContent({
-		model: "gemini-2.0-flash",
-		contents: prompt,
-	  });
-	console.log(response.candidates[0].content.parts[0].text);
+async function checkAnswerwithAI(userAnswer, id) {
+  try {
+    const conn = await pool.getConnection();
+    const queryResult = await conn.query(
+      `SELECT movie_name FROM Questions WHERE imdb_id = ?`,
+      [id]
+    );
+    conn.release();
+
+    console.log(queryResult);
+    movie_name = queryResult[0][0].movie_name;
+    //console.log(movie_name);
+    const prompt = `
+	Your task is to determine if the user is referring to the same movie title as the original title.
+	Only respond with "1" if the user answer refers to the same movie (case-insensitive, minor typos allowed).
+	Otherwise, respond with "0".
+	
+	Original Title: ${movie_name}
+	User Answer: ${userAnswer}
+	`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt,
+    });
+    const result = response.candidates[0].content.parts[0].text;
+    return { result, movie_name };
+  } catch (error) {
+    console.log("DB or AI error:", err);
+    return { result: "0", movie_name: "Unknown" };
+  }
 }
-const userAnswer = "pudhupettai";
-const movie_name = "Petta"
- checkAnswerwithAI(userAnswer,movie_name)
 
- module.exports = {checkAnswerwithAI}
+module.exports = { checkAnswerwithAI };

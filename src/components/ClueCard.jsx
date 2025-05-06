@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-function ClueCard(props){
+import '../css/cluecard.css'
+function Cluecard(props){
     return (
 
         <div className="cluecard">
-            <h2 className='ClueHeading'>CLUE : {props.clueNo}</h2>
+            <h1 className='ClueHeading'>CLUE {props.clueNo}</h1>
             <p className='clueText'>
                {props.text}
             </p>
@@ -12,4 +13,4 @@ function ClueCard(props){
     )
 }
 
-export default ClueCard;
+export default Cluecard;

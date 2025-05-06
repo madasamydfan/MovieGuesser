@@ -1,14 +1,14 @@
 const pool = require('./forCreatingDataset/db')
 
-async function nextClue(cluenumber,imdb_id) {
+async function nextClue(imdb_id,clue_no) {
     
 const conn = await pool.getConnection();
-
- 
-    let res = await pool.query(
-        `SELECT clue FROM Clues WHERE imdb_id = ? ORDER BY id LIMIT 1 OFFSET ?`,
-        [imdb_id, cluenumber - 1]
+    //console.log(imdb_id,clue_no);
+    let res = await conn.query(
+        `SELECT clue FROM Clues WHERE imdb_id  = ? LIMIT 1 OFFSET ?`,
+         [imdb_id,clue_no]
       );
+     // console.log(res);
       return res[0];
 }
 

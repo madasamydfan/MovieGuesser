@@ -1,74 +1,188 @@
 /* Full-screen container, centered */
 .question-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  /* NGL-style question box */
-  .question-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 30px 40px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-    color: white;
-    margin-bottom: 30px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 600px;
-    width: 90%;
-    max-height: 60vh;
-    overflow-y: auto; /* 🔑 enables vertical scroll */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* NGL-style question box */
+.question-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  color: white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 600px;
+  width: 90%;
+  max-height: 60vh;
+  overflow-y: auto; /* 🔑 enables vertical scroll */
+}
+
+/* Question heading */
+.question-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgba(255, 18, 18, 0.9);
+  letter-spacing: 2px;
+}
+
+/* Question content */
+.question-text {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #fff;
+  opacity: 0.8;
+}
+
+/* Input box */
+.answer-input {
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(20, 0, 0, 0.315);
+  outline: none;
+  width: 90%;
+  max-width: 400px;
+  background-color: rgba(134, 134, 134, 0.2);
+  color: rgb(255, 255, 255);
+  transition: transform 0.2s ease;
  
-  
-  /* Question heading */
-  .question-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: rgba(255, 18, 18, 0.9);
-    letter-spacing: 2px;
+}
+
+.answer-input:focus{
+  transform: scale(1.1);;
+}
+.answer-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+}
+.bulb-button {
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/bulb.png"); /* adjust path as needed */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent; /* to remove button color */
+  transition: transform 0.2s ease;
+}
+
+.bulb-button:hover {
+  transform: scale(1.4);
+}
+
+
+.input-clues-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px; 
+}
+
+.check-and-quit-button {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.AnswerCheckButton {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: white;
+  background: transparent;
+  box-shadow: 0 4px 15px rgba(255, 87, 87, 0.4);
+}
+
+
+.AnswerCheckButton:hover {
+  transform: scale(1.1);
+}
+
+@keyframes greenBlink {
+  0% {
+    background-color: rgba(1, 180, 1, 0.511);
   }
-  
-  /* Question content */
-  .question-text {
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: #fff;
-    opacity: 0.8;
+  100% {
+    background-color: transparent;
   }
-  
-  /* Input box */
-  .answer-input {
-    padding: 15px 20px;
-    font-size: 1rem;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    width: 90%;
-    max-width: 400px;
-    background-color: rgba(156, 152, 152, 0.1);
-    color: rgb(255, 255, 255);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-  }
-  
-  .answer-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 1px;
-  }
-  
-  .answer-input:focus {
-    background-color: rgba(134, 134, 134, 0.2);
-    box-shadow: 0 0 10px rgba(111, 30, 30, 0.7);
-  }
-  
+}
+
+.correct-blink {
+  animation: greenBlink 0.5s ease-in-out;
+}
+
+.clue-overlay {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: rgba(0, 0, 0, 0.593);
+  backdrop-filter: blur(8px);
+  padding: 5px 30px;
+  border-radius: 20px;
+  z-index: 999;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  width: 40%;
+  height: fit-content;
+  text-align: center;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+.cluecard{
+   text-align: top;
+}
+.ClueHeading{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    text-align: top;
+    color: white;
+}
+
+.clueText{
+  font-family: 'Courier New', Courier, monospace;
+  color: white; /* Ensure text is white */
+  text-align: center;
+  padding: 0 20px;
+}
