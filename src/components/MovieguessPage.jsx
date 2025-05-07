@@ -12,6 +12,9 @@ function MovieguessPage() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showClue, setShowClue] = useState(false);
   const [clueText, setClueText] = useState("");
+  const [score,setScore] = useState(0);
+  const [showScore,setShowScore] = useState(false);
+
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -27,9 +30,11 @@ function MovieguessPage() {
       console.log(response.data.answer);
       if (response.data.answer.trim() === "1") {
         setIsCorrect(true); // Trigger the blink
+        setScore((s)=> s + 10 - (clueNo *2));
         setTimeout(() => setIsCorrect(false), 1000);
         setInputText("");
       } else {
+
         alert(`Wrong Answer ${response.data.originalAnswer}`);
       }
     } catch (error) {
@@ -75,6 +80,13 @@ function MovieguessPage() {
     }
   };
 
+  const handlequitbutton = ()=>{
+    setShowScore(true);
+  }
+  const handlegetLeaderboard = () => {
+    alert("LeaderBoard feature will be added soon");
+  }
+
   useEffect(() => {
     fetchQuestion();
   }, [isCorrect]);
@@ -92,6 +104,16 @@ function MovieguessPage() {
           </div>
         </div>
       )}
+
+      {
+        showScore && (
+          <div className="score-overlay">
+            <div className="gameover-title">GAME OVER</div>
+            <p className="score">Your score is :{score}</p>
+            <button className="leaderboard" onClick={handlegetLeaderboard}>Leaderboard</button>
+          </div>
+        )
+      }
 
       <div
         className={`question-page-container ${
@@ -120,7 +142,7 @@ function MovieguessPage() {
           >
             Check
           </button>
-          <button className="AnswerCheckButton">Quit</button>
+          <button className="AnswerCheckButton" onClick={handlequitbutton}>Quit</button>
         </div>
       </div>
     </>

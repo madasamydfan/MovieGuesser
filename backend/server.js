@@ -21,7 +21,7 @@ app.get("/movieguess", async (req, res) => {
     res.json({ description: response.description, imdb_id: response.imdb_id });
   }
   catch(error){
-    console.error("Error fetching question:", err);
+    console.error("Error fetching question:", error);
     res.status(500).json({ error: "Failed to fetch question" });
   }
 });
