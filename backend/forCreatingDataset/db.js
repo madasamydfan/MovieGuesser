@@ -1,19 +1,26 @@
 const mysql = require('mysql2/promise');
 const fs = require('fs');
 
-// ✅ Declare the pool correctly before using it
+// // ✅ Declare the pool correctly before using it
+// const pool = mysql.createPool({
+//     host: 'sql12.freesqldatabase.com',
+//     user: 'sql12776328',
+//     password: 'ZlEYMBm3mf',
+//     database: 'sql12776328'
+// });
+
 const pool = mysql.createPool({
-    host: 'sql12.freesqldatabase.com',
-    user: 'sql12776328',
-    password: 'ZlEYMBm3mf',
-    database: 'sql12776328'
-});
+    host: 'localhost',
+    user: 'root',
+    password: 'root',  // Replace with your new password
+    database: 'movie_db'  // Replace with your database name
+  });
 
 // ✅ Optional: Run your init script
 async function runInitScript() {
     const conn = await pool.getConnection();
+    await conn.beginTransaction();
     try {
-        await conn.beginTransaction();
 
         await conn.query(`CREATE TABLE IF NOT EXISTS Questions (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,6 +35,14 @@ async function runInitScript() {
             imdb_id VARCHAR(50) NOT NULL,
             FOREIGN KEY (imdb_id) REFERENCES Questions(imdb_id)
         );`);
+
+        
+        await conn.query(`CREATE TABLE IF NOT EXISTS Leaderboard 
+            (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL,
+            score INT NOT NULL
+            );`);
 
         await conn.commit();
         console.log("✅ Tables created or verified");

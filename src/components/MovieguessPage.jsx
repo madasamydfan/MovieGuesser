@@ -14,7 +14,7 @@ function MovieguessPage() {
   const [clueText, setClueText] = useState("");
   const [score,setScore] = useState(0);
   const [showScore,setShowScore] = useState(false);
-
+  const [name ,setName] = useState("");
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -83,8 +83,14 @@ function MovieguessPage() {
   const handlequitbutton = ()=>{
     setShowScore(true);
   }
-  const handlegetLeaderboard = () => {
-    alert("LeaderBoard feature will be added soon");
+  const  handlegetLeaderboard = async () => {
+    // alert("LeaderBoard feature will be added soon");
+    const topscorers = await axios.post("http://localhost:5172/movieguess",
+      {
+        username :{name},
+        score :{score}
+      }
+    )
   }
 
   useEffect(() => {
@@ -110,7 +116,8 @@ function MovieguessPage() {
           <div className="score-overlay">
             <div className="gameover-title">GAME OVER</div>
             <p className="score">Your score is :{score}</p>
-            <button className="leaderboard" onClick={handlegetLeaderboard}>Leaderboard</button>
+            <input type="text" placeholder="Type your name" value={name} onChange={(e)=>setName(e.target.value)}/>
+            <button className="leaderboard" onClick={handlegetLeaderboard} disabled={!name.trim()}>Leaderboard</button>
           </div>
         )
       }

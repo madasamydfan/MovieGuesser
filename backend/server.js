@@ -3,6 +3,7 @@ const axios = require("axios");
 // const pool = require('./forCreatingDataset/db')
 const { nextClue } = require("./getNextClue");
 const { nextQuestion } = require("./getnextQuestion");
+const { leaderboard } = require("./leaderboard");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { checkAnswerwithAI } = require("./checkAnswer");
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 app.get("/movieguess", async (req, res) => {
   try{
     const response = await nextQuestion();
+    console.log(response);
     res.json({ description: response.description, imdb_id: response.imdb_id });
   }
   catch(error){
@@ -50,6 +52,13 @@ app.post("/movieguess", async (req, res) => {
     console.log(movie_name);
     //console.log(response)
     res.json({ answer: result, originalAnswer: movie_name });
+  }
+  if(type === "leaderboard"){
+    const username = req.body.username;
+    const score = req.body.score;
+    console.log(username,score)
+    const topscorers = await leaderboard(username,score);
+    res.json({ leaderboard : topscorers});
   }
 });
 

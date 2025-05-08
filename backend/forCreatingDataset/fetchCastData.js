@@ -19,7 +19,8 @@ async function fetchCastData(movie) {
           method: 'GET',
           url: `https://imdb236.p.rapidapi.com/imdb/${movieId}/cast`,
           headers: {
-            'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
+           // 'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
+           'x-rapidapi-key': '18de5db6aamshcfb79b4232eccc5p1ff057jsna5e632a86c76',
             'x-rapidapi-host': 'imdb236.p.rapidapi.com'
           }
             };

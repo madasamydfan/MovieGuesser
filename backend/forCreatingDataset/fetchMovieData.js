@@ -14,9 +14,9 @@ async function fetchMovieData(){
       params: {
         type: 'movie',
         // genre: `${listOfGenres[randomIndex]}`,
-        genre:"Thriller", 
+        genre:"Action", 
         //comedy done,romance,action,crime,
-
+        //local db thriller ,romance, action going
         averageRatingFrom: '5',
         numVotesFrom: '5000',
         startYearFrom: '2000',
@@ -26,7 +26,8 @@ async function fetchMovieData(){
         sortField: 'numVotes'
       },
       headers: {
-        'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
+        //'x-rapidapi-key': '98f8ecf8fbmsh063188e17a36fdap1107fbjsncfd81697664b',
+        'x-rapidapi-key': '18de5db6aamshcfb79b4232eccc5p1ff057jsna5e632a86c76',
         'x-rapidapi-host': 'imdb236.p.rapidapi.com'
       }
     };
@@ -45,7 +46,7 @@ async function fetchMovieData(){
    const parsed = parseGeneratedText(finalText);
    parsed["title"] = title;
    parsed["movie_id"] = movieId;
-   console.log(parsed);
+  //  console.log(parsed);
    writeToDB(parsed);
   }
     //return response.data.results[0];

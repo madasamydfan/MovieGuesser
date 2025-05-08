@@ -32,7 +32,7 @@ async function checkAnswerwithAI(userAnswer, id) {
     const result = response.candidates[0].content.parts[0].text;
     return { result, movie_name };
   } catch (error) {
-    console.log("DB or AI error:", err);
+    console.log("DB or AI error:", error);
     return { result: "0", movie_name: "Unknown" };
   }
 }
