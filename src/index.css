@@ -10,3 +10,18 @@ body {
     background-attachment: fixed;
     background-position: center center;
 }
+
+
+@media (max-width: 700px) {
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)) ,url("D:\For my learning\Movie Guess\MovieGuesser\assets\martin thatha mobile_11zon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    
+  }
+}

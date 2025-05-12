@@ -1,0 +1,249 @@
+.clue-overlay {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: rgba(0, 0, 0, 0.593);
+  backdrop-filter: blur(8px);
+  padding: 5px 30px;
+  border-radius: 20px;
+  z-index: 999;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  width: 40%;
+  height: fit-content;
+  text-align: center;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+.cluecard{
+   text-align: top;
+}
+.ClueHeading{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    text-align: top;
+    color: white;
+}
+
+.clueText{
+  font-family: 'Courier New', Courier, monospace;
+  color: white; /* Ensure text is white */
+  text-align: center;
+  padding: 0 20px;
+}
+
+.score-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95); /* Full black overlay */
+  backdrop-filter: blur(8px);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  border-radius: 0; /* Full screen, no rounding */
+  animation: fadeInScreen 0.7s ease-in-out;
+}
+@keyframes fadeInScreen {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.gameover-title {
+  color: red;
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 10px;
+  animation: popIn 1s ease-out forwards;
+  margin-bottom: 20px;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.score {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  animation: slowrise 1s ease-out forwards;
+}
+
+@keyframes slowrise {
+  0% {
+    opacity: 0;
+  }
+  80%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+} 
+
+.leaderboard{
+  background: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  border-radius: 15px;
+  margin: 30px auto;
+  color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  height: 8%;
+  width: 10%;
+  cursor: pointer;
+}
+
+.name-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.9),
+    rgba(20, 20, 20, 0.95)
+  ); /* subtle gradient */
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  backdrop-filter: blur(4px); /* slight blur for depth */
+}
+
+.Username {
+  height: 5%;
+  width: 20%;
+  background-color: rgba(10, 10, 10, 0.95);
+  border-radius: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(129, 3, 3);
+  border: 1px solid rgba(232, 232, 232, 0.144);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+.Username::placeholder {
+  color:rgb(127, 6, 6); /* white with 50% opacity */
+  letter-spacing: 3px;
+  font-weight: normal;
+}
+.Username:focus{
+  outline: none;
+  border: 2px solid rgb(127, 6, 6);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.submit-name-button {
+  height: 5%;
+  width: 6%;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.95);
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+.submit-name-button:hover {
+  background-color: rgb(127, 6, 6)  ;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+
+@media (max-width:768px) {
+     .clue-overlay{
+    top: 20%;
+    left: 50%;
+    padding: 5px 3px;
+    border-radius: 20px;
+    width: 90%;
+  }
+
+  .ClueHeading{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    text-align: top;
+    color: white;
+}
+
+.clueText{
+  font-family: 'Courier New', Courier, monospace;
+  color: white; /* Ensure text is white */
+  text-align: center;
+  padding: 0 20px;
+  font-size: small;
+}
+.close-btn {
+  position: absolute;
+  top: 5%;
+  right: 0%;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+.score-overlay{
+  padding: 0%;
+  width: 100%;
+  height: 100%;
+}
+.gameover-title{
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 10px;
+}
+.leaderboard{
+  width: 50%;
+  height: 7%;
+}
+.Username{
+  width: 70%;
+  height: 7%;  
+}
+.submit-name-button {
+  width: 25%;
+  height: 7%;
+  font-size: small;
+  letter-spacing: 2px;
+}
+}

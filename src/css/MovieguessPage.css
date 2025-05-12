@@ -59,9 +59,6 @@
  
 }
 
-.answer-input:focus{
-  transform: scale(1.1);;
-}
 .answer-input::placeholder {
   color: rgba(255, 255, 255, 0.6);
   letter-spacing: 1px;
@@ -108,10 +105,9 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
   color: white;
-  background: transparent;
-  box-shadow: 0 4px 15px rgba(255, 87, 87, 0.4);
+  background-color: rgba(18, 18, 18, 0.604);
+  box-shadow: white 10px;
 }
 
 
@@ -127,122 +123,41 @@
     background-color: transparent;
   }
 }
+@keyframes redBlink {
+  0% {
+    background-color: rgba(255, 0, 0, 0.511);
+  }
+  100% {
+    background-color: transparent;
+  }
+  
+}
 
 .correct-blink {
   animation: greenBlink 0.5s ease-in-out;
 }
-
-.clue-overlay {
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  background: rgba(0, 0, 0, 0.593);
-  backdrop-filter: blur(8px);
-  padding: 5px 30px;
-  border-radius: 20px;
-  z-index: 999;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  width: 40%;
-  height: fit-content;
-  text-align: center;
+.wrong-blink {
+  animation: redBlink 0.5s ease-in-out;
 }
 
-
-.close-btn {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  background: transparent;
-  border: none;
-  font-size: 2.5rem;
-  color: white;
-  cursor: pointer;
-  z-index: 1000;
-  transition: transform 0.2s ease;
-}
-
-.close-btn:hover {
-  transform: scale(1.2);
-}
-
-.cluecard{
-   text-align: top;
-}
-.ClueHeading{
-    font-family:'Courier New', Courier, monospace;
-    font-size: 1.8rem;
-    text-align: top;
-    color: white;
-}
-
-.clueText{
-  font-family: 'Courier New', Courier, monospace;
-  color: white; /* Ensure text is white */
-  text-align: center;
-  padding: 0 20px;
-}
-
-.score-overlay{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  background: rgba(0, 0, 0, 0.708);
-  backdrop-filter: blur(8px);
-  padding: 5px 30px;
-  border-radius: 20px;
-  z-index: 998;
-  box-shadow: 0 10px 25px rgba(15, 1, 1, 0.314);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 80%;
-  width: 50%;
-  height: 50%;
-  text-align: center;
-}
-
-
-.gameover-title {
-  color: red;
-  font-size: 4rem;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  letter-spacing: 10px;
-  animation: popIn 1s ease-out forwards;
-  margin-bottom: 20px;
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
+@media (max-width:768px) {
+  .question-box{
+    padding:20px 20px;
+    max-width: 80%;
+    width: 90%;
+    max-height: 70vh;
   }
-  100% {
-    transform: scale(1);
+  .question-title{
+    font-size: 1.3rem;
+  } 
+  .answer-input{
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  .question-text{
+    font-size: 1rem;
+  }
+  .input-clues-container{
+    gap: 5px;
   }
 }
-.score {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 500;
-  animation: slowrise 3s ease-out forwards;
-}
-
-@keyframes slowrise {
-  0% {
-    opacity: 0;
-  }
-  80%{
-    opacity: 0;
-  }
-  100%{
-    opacity: 1;
-  }
-} 

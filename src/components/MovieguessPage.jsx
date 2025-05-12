@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../css/MovieguessPage.css";
 import axios from "axios";
-
+import "../css/overlay.css";
+import Cluecard from "./clueCard";
+import ScoreCard from "./scoreCard";
 //const response = await axios.get("http://localhost:5173/movieguess")\
 
 function MovieguessPage() {
@@ -10,11 +12,13 @@ function MovieguessPage() {
   const [inputText, setInputText] = useState("");
   const [clueNo, setClueNo] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   const [showClue, setShowClue] = useState(false);
   const [clueText, setClueText] = useState("");
-  const [score,setScore] = useState(0);
-  const [showScore,setShowScore] = useState(false);
-  const [name ,setName] = useState("");
+  const [score, setScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [name, setName] = useState("");
+  const [showNameCard, setshowNameCard] = useState(true);
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -30,15 +34,17 @@ function MovieguessPage() {
       console.log(response.data.answer);
       if (response.data.answer.trim() === "1") {
         setIsCorrect(true); // Trigger the blink
-        setScore((s)=> s + 10 - (clueNo *2));
+        setScore((s) => s + 10 - clueNo * 2);
         setTimeout(() => setIsCorrect(false), 1000);
         setInputText("");
       } else {
-
-        alert(`Wrong Answer ${response.data.originalAnswer}`);
+        setIsWrong(true);
+        await setTimeout(() => setIsWrong(false), 1000);
+        setShowScore(true);
       }
     } catch (error) {
       console.log("Failed to check answer", error);
+      
     }
   }
 
@@ -79,52 +85,44 @@ function MovieguessPage() {
       console.log(error);
     }
   };
-
-  const handlequitbutton = ()=>{
-    setShowScore(true);
-  }
-  const  handlegetLeaderboard = async () => {
-    // alert("LeaderBoard feature will be added soon");
-    const topscorers = await axios.post("http://localhost:5172/movieguess",
-      {
-        username :{name},
-        score :{score}
-      }
-    )
-  }
-
   useEffect(() => {
     fetchQuestion();
   }, [isCorrect]);
 
+  useEffect(() => {
+    if (showClue) {
+      const timeout = setTimeout(() => {
+        setShowClue(false);
+      }, 5000); // 5000ms = 5 seconds
+      return () => clearTimeout(timeout); // Cleanup if component unmounts or showClue changes
+    }
+  }, [showClue]);
+
   return (
     <>
-      {showClue && (
-        <div className="clue-overlay">
-          <button className="close-btn" onClick={() => setShowClue(false)}>
-            ×
+      {showNameCard && (
+        <div className="name-card">
+          <input
+            type="text"
+            placeholder="Type your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="Username"
+          />
+          <button
+            className="submit-name-button"
+            onClick={() => setshowNameCard(false)}
+            disabled={!name.trim()}
+          >
+            Sumbit
           </button>
-          <div className="cluecard">
-            <h1 className="ClueHeading">CLUE {clueNo}</h1>
-            <p className="clueText">{clueText}</p>
-          </div>
         </div>
       )}
-
-      {
-        showScore && (
-          <div className="score-overlay">
-            <div className="gameover-title">GAME OVER</div>
-            <p className="score">Your score is :{score}</p>
-            <input type="text" placeholder="Type your name" value={name} onChange={(e)=>setName(e.target.value)}/>
-            <button className="leaderboard" onClick={handlegetLeaderboard} disabled={!name.trim()}>Leaderboard</button>
-          </div>
-        )
-      }
-
+      {showClue && <Cluecard clueText={clueText} clueNo={clueNo}></Cluecard>}
+      {showScore && <ScoreCard score={score} name={name}></ScoreCard>}
       <div
         className={`question-page-container ${
-          isCorrect ? "correct-blink" : ""
+          isCorrect ? "correct-blink" : !isWrong ? "wrong-blink" : ""
         }`}
       >
         <div className="question-box">
@@ -149,7 +147,14 @@ function MovieguessPage() {
           >
             Check
           </button>
-          <button className="AnswerCheckButton" onClick={handlequitbutton}>Quit</button>
+          <button
+            className="AnswerCheckButton"
+            onClick={() => {
+              setShowScore(true);
+            }}
+          >
+            Quit
+          </button>
         </div>
       </div>
     </>

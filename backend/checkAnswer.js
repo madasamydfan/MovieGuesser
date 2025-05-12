@@ -1,39 +1,43 @@
 const { GoogleGenAI } = require("@google/genai");
 const ai = new GoogleGenAI({
-  apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8",
+  apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8", // 🚨 Reminder: avoid pushing API keys in public repos
 });
 const pool = require("./forCreatingDataset/db");
 
 async function checkAnswerwithAI(userAnswer, id) {
+  let conn;
   try {
-    const conn = await pool.getConnection();
-    const queryResult = await conn.query(
+    conn = await pool.getConnection();
+   // console.log(id)
+    const [rows] = await conn.query(
       `SELECT movie_name FROM Questions WHERE imdb_id = ?`,
       [id]
     );
-    conn.release();
-
-    console.log(queryResult);
-    movie_name = queryResult[0][0].movie_name;
-    //console.log(movie_name);
+   // console.log(rows)
+    let movie_name = rows[0].movie_name;
+    console.log("Movie name from DB:", movie_name);
     const prompt = `
-	Your task is to determine if the user is referring to the same movie title as the original title.
-	Only respond with "1" if the user answer refers to the same movie (case-insensitive, minor typos allowed).
-	Otherwise, respond with "0".
-	
-	Original Title: ${movie_name}
-	User Answer: ${userAnswer}
-	`;
+Your task is to determine if the user is referring to the same movie title as the original title.
+Only respond with "1" if the user answer refers to the same movie (case-insensitive, minor typos allowed).
+Otherwise, respond with "0".
+
+Original Title: ${movie_name}
+User Answer: ${userAnswer}
+`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: prompt,
     });
-    const result = response.candidates[0].content.parts[0].text;
+
+    let  result = response.candidates[0].content.parts[0].text.trim();
+    console.log(result,movie_name)
     return { result, movie_name };
   } catch (error) {
     console.log("DB or AI error:", error);
     return { result: "0", movie_name: "Unknown" };
+  } finally {
+    if (conn) conn.release(); // ✅ release only here
   }
 }
 

@@ -1,0 +1,47 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+function ScoreCard(props) {
+  const navigate = useNavigate();
+
+  async function handlegetLeaderboard(name, score) {
+    // alert("LeaderBoard feature will be added soon");
+    console.log("hi");
+    try {
+      const topscorers = await axios.post(
+        "http://localhost:5172/movieguess",
+        {
+          username: name,
+          score: score,
+        },
+        { params: { type: "leaderboard" } }
+      );
+      console.log(topscorers.data);
+      navigate("/leaderboard", {
+        state: { leaderboard: topscorers.data },
+      });
+    } catch (error) {
+      console.log("Error in getting leaderboard", error);
+    }
+  }
+  console.log(props.score, props.name);
+  return (
+    <>
+      <div className="score-overlay">
+        <div className="gameover-title">GAME OVER</div>
+        <p className="score">Your score is :{props.score}</p>
+        <button
+          className="leaderboard"
+          onClick={() => {
+            console.log(props.name, props.score);
+            handlegetLeaderboard(props.name, props.score);
+          }}
+        >
+          Leaderboard
+        </button>
+      </div>
+    </>
+  );
+}
+
+export default ScoreCard;
