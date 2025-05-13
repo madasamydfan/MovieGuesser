@@ -7,18 +7,20 @@ import ScoreCard from "./scoreCard";
 //const response = await axios.get("http://localhost:5173/movieguess")\
 
 function MovieguessPage() {
-  const [question, setQuestion] = useState("Loading...");
+  const [question, setQuestion] = useState("");
   const [questionNo, setQuestionNo] = useState("");
   const [inputText, setInputText] = useState("");
   const [clueNo, setClueNo] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [isWrong, setIsWrong] = useState(false);
   const [showClue, setShowClue] = useState(false);
   const [clueText, setClueText] = useState("");
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [name, setName] = useState("");
   const [showNameCard, setshowNameCard] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [error, setError] = useState("");
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -31,20 +33,25 @@ function MovieguessPage() {
           params: { type: "answerCheck" },
         }
       );
-      console.log(response.data.answer);
+      // console.log(response.data.answer);
       if (response.data.answer.trim() === "1") {
+        setFeedbackMessage("✅ Correct!");
         setIsCorrect(true); // Trigger the blink
         setScore((s) => s + 10 - clueNo * 2);
-        setTimeout(() => setIsCorrect(false), 1000);
         setInputText("");
+        setTimeout(() => {
+          setIsCorrect(false); // Reset the "correct" state after 1 second
+          setFeedbackMessage(""); // Clear the feedback message
+          fetchQuestion(); // Fetch the next question
+        }, 1000);
       } else {
-        setIsWrong(true);
-        await setTimeout(() => setIsWrong(false), 1000);
+        setFeedbackMessage("❌ Wrong Answer");
+        setTimeout(() => setFeedbackMessage(""), 1500);
         setShowScore(true);
       }
     } catch (error) {
-      console.log("Failed to check answer", error);
-      
+      console.error(error);
+      setError("Failed to check answer. Please try again.");
     }
   }
 
@@ -55,7 +62,7 @@ function MovieguessPage() {
         alert("No more clues available");
         return;
       }
-      console.log(clueNo, questionNo);
+      // console.log(clueNo, questionNo);
       const response = await axios.post(
         "http://localhost:5172/movieguess",
         {
@@ -64,30 +71,35 @@ function MovieguessPage() {
         },
         { params: { type: "clue" } }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setClueText(response.data.clue);
       setShowClue(true);
-      console.log("question no at time of clue", questionNo);
+      // console.log("question no at time of clue", questionNo);
     } catch (error) {
       console.log(error);
+      setError("Failed to fetch clue. Please try again.");
     }
   };
 
   const fetchQuestion = async () => {
     try {
+      setLoading(true);
       const response = await axios.get("http://localhost:5172/movieguess");
       // console.log(response.data);
       setQuestion(response.data.description);
       setQuestionNo(response.data.imdb_id);
       setClueNo(0);
-      console.log("Question no at time of question", questionNo);
+      // console.log("Question no at time of question", questionNo);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      setError("Failed to load question. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
     fetchQuestion();
-  }, [isCorrect]);
+  }, []);
 
   useEffect(() => {
     if (showClue) {
@@ -118,44 +130,63 @@ function MovieguessPage() {
           </button>
         </div>
       )}
-      {showClue && <Cluecard clueText={clueText} clueNo={clueNo}></Cluecard>}
+      {feedbackMessage && (
+        <div className="feedback-message">{feedbackMessage}</div>
+      )}
+
+      {error && <div className="error-message">{error}</div>}
+
+      {showClue && (
+        <Cluecard
+          clueText={clueText}
+          clueNo={clueNo}
+          setShowClue={setShowClue}
+        ></Cluecard>
+      )}
       {showScore && <ScoreCard score={score} name={name}></ScoreCard>}
       <div
         className={`question-page-container ${
-          isCorrect ? "correct-blink" : !isWrong ? "wrong-blink" : ""
+          isCorrect ? "correct-blink" : ""
         }`}
       >
-        <div className="question-box">
-          <div className="question-title">Guess the Movie?</div>
-          <div className="question-text">{question}</div>
-        </div>
-        <div className="input-clues-container">
-          <input
-            type="text"
-            className="answer-input"
-            value={inputText}
-            placeholder="Your guess here..."
-            onChange={(e) => setInputText(e.target.value)}
-          />
-          <button className="bulb-button" onClick={handlegetClue}></button>
-        </div>
-        <div className="check-and-quit-button">
-          <button
-            className="AnswerCheckButton"
-            onClick={handleAnswerCheck}
-            disabled={!inputText.trim()}
-          >
-            Check
-          </button>
-          <button
-            className="AnswerCheckButton"
-            onClick={() => {
-              setShowScore(true);
-            }}
-          >
-            Quit
-          </button>
-        </div>
+        {loading ? (
+          <div className="loading-spinner">Loading question...</div>
+        ) : (
+          <>
+            <div className="question-box">
+              <div className="question-title">Guess the Movie?</div>
+              <div className="question-text">{question}</div>
+            </div>
+            <div className="input-clues-container">
+              <input
+                type="text"
+                className="answer-input"
+                value={inputText}
+                placeholder="Your guess here..."
+                onChange={(e) => setInputText(e.target.value)}
+                disabled={isCorrect}
+              />
+              <button className="bulb-button" onClick={handlegetClue}  disabled={clueNo >= 3}></button>
+            </div>
+            <div className="check-and-quit-button">
+              <button
+                className="AnswerCheckButton"
+                onClick={handleAnswerCheck}
+                disabled={!inputText.trim()}
+              >
+                Check
+              </button>
+              <button
+                className="AnswerCheckButton"
+                onClick={() => {
+                  setShowScore(true);
+                }}
+              >
+                Quit
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -31,16 +31,16 @@ h1{
 }
 
 .Aramikalaama{
-    height: 8%;
-    width: 20%;    
-    border-radius: 15px;
-    text-align: center;
-    font-size: x-large;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: red;
-    background: rgba(18, 1, 1, 0.173);
-    border: 2px;
-    letter-spacing: 2px;
+  border-radius: 8px;
+  height: 10%;
+  width: 15%;
+  font-weight: 800;
+  cursor: pointer;
+  color: rgb(251, 2, 2);
+  background-color: rgba(30, 30, 30, 0.95);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
 .Aramikalaama:hover{

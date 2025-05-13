@@ -3,8 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
-    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)),
-      url("D:/For my learning/Movie Guess/MovieGuesser/assets/martin-scorsese-1024x576.webp");
+    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)),url("./images/martin-scorsese-1024x576.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -17,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)) ,url("D:\For my learning\Movie Guess\MovieGuesser\assets\martin thatha mobile_11zon.png");
+    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.7)) ,url("./images/martin-scorse-mobile.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

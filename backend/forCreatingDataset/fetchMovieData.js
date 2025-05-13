@@ -14,11 +14,11 @@ async function fetchMovieData(){
       params: {
         type: 'movie',
         // genre: `${listOfGenres[randomIndex]}`,
-        genre:"Action", 
+        genre:"Crime", 
         //comedy done,romance,action,crime,
-        //local db thriller ,romance, action going
+        //local db thriller ,romance, action mystery  -- comedy adventure crime horror
         averageRatingFrom: '5',
-        numVotesFrom: '5000',
+        numVotesFrom: '2000',
         startYearFrom: '2000',
         rows: '100',
         spokenLanguages: 'ta',
@@ -34,7 +34,7 @@ async function fetchMovieData(){
     const response = await axios.request(options);
   //  console.log(response);
   //console.log(response.data.results[0]);
-  for(let i=0;i<100;i++){
+  for(let i=99;i>0;i--){
     try{
       const detailsForPrompt = await fetchCastData(response.data.results[i]);
     }
@@ -46,7 +46,7 @@ async function fetchMovieData(){
    const parsed = parseGeneratedText(finalText);
    parsed["title"] = title;
    parsed["movie_id"] = movieId;
-  //  console.log(parsed);
+   console.log(parsed);
    writeToDB(parsed);
   }
     //return response.data.results[0];

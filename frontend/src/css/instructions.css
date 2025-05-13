@@ -1,0 +1,56 @@
+.instruction-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  min-height: 100vh;
+  min-width: 100dvw;
+}
+
+.instructions-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px 30px;
+  text-align: left;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  color: white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 70%;
+  margin-bottom: 20px;
+  overflow-y: auto;
+}
+
+.instructions-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgba(255, 0, 0, 0.727); /* yellow-ish to contrast red title */
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.instruction-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.Get-Started-button {
+  height: 30px;
+  width: 30%;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.95);
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+}
