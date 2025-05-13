@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { GoogleGenAI } = require('@google/genai');
-const ai = new GoogleGenAI({ apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8" });
+require('dotenv').config();
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 async function generateQuestion(detailsForPrompt) {
    // console.log(detailsForPrompt);

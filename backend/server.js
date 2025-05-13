@@ -33,7 +33,7 @@ app.post("/movieguess", async (req, res) => {
     try{
       const clueNo = req.body.clueNo;
       const imdb_id = req.body.imdb_id;
-      console.log(clueNo, imdb_id);
+      // console.log(clueNo, imdb_id);
       const clue = await nextClue(imdb_id, clueNo);
       //console.log(clue);
       if (!clue || !clue.length) {
@@ -65,9 +65,9 @@ app.post("/movieguess", async (req, res) => {
     try{
       const username = req.body.username;
       const score = req.body.score;
-      console.log(username,score)
+      // console.log(username,score)
       const topscorers = await leaderboard(username,score);
-      console.log(topscorers)
+      // console.log(topscorers)
       res.json(topscorers);
     }
     catch (error) {

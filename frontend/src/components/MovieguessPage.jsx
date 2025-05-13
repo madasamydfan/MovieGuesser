@@ -24,7 +24,7 @@ function MovieguessPage() {
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
-        "http://localhost:5172/movieguess",
+        `${import.meta.env.VITE_BACKEND_URL}/movieguess`,
         {
           id: questionNo,
           userAnswer: inputText.trim(),
@@ -64,7 +64,7 @@ function MovieguessPage() {
       }
       // console.log(clueNo, questionNo);
       const response = await axios.post(
-        "http://localhost:5172/movieguess",
+        `${import.meta.env.VITE_BACKEND_URL}/movieguess`,
         {
           clueNo: clueNo,
           imdb_id: questionNo,
@@ -76,7 +76,7 @@ function MovieguessPage() {
       setShowClue(true);
       // console.log("question no at time of clue", questionNo);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setError("Failed to fetch clue. Please try again.");
     }
   };
@@ -84,7 +84,7 @@ function MovieguessPage() {
   const fetchQuestion = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5172/movieguess");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/movieguess`);
       // console.log(response.data);
       setQuestion(response.data.description);
       setQuestionNo(response.data.imdb_id);

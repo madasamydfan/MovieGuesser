@@ -6,7 +6,7 @@ function ScoreCard(props) {
 
   async function handlegetLeaderboard(name, score) {
     // alert("LeaderBoard feature will be added soon");
-    console.log("hi");
+    // console.log("hi");
     try {
       const topscorers = await axios.post(
         "http://localhost:5172/movieguess",
@@ -16,7 +16,7 @@ function ScoreCard(props) {
         },
         { params: { type: "leaderboard" } }
       );
-      console.log(topscorers.data);
+      // console.log(topscorers.data);
       navigate("/leaderboard", {
         state: { leaderboard: topscorers.data },
       });
@@ -33,7 +33,7 @@ function ScoreCard(props) {
         <button
           className="leaderboard"
           onClick={() => {
-            console.log(props.name, props.score);
+            // console.log(props.name, props.score);
             handlegetLeaderboard(props.name, props.score);
           }}
         >
