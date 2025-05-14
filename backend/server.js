@@ -10,7 +10,8 @@ const app = express();
 app.use(cors()); // This allows all origins
 app.use(bodyParser.json());
 app.use(express.json());
-
+const  dotenv = require('dotenv');
+dotenv.config();
 app.get("/", (req, res) => {
   return res.send("Welcome to the Rest API");
 });
@@ -77,7 +78,7 @@ app.post("/movieguess", async (req, res) => {
   }
 });
 
-app.listen(5172, () => {
-  console.log("Server is running on port 5172");
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
 
