@@ -5,7 +5,7 @@ async function nextQuestion() {
   try {
     conn = await pool.getConnection();
     const res = await conn.query(
-      `SELECT id,imdb_id,movie_name,description FROM Questions ORDER BY RAND() LIMIT 1`
+      `SELECT id,imdb_id,movie_name,description FROM questions ORDER BY RAND() LIMIT 1`
     );
         // res[0] is array of rows
     if (res[0].length === 0) {
