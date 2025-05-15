@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import '../css/cluecard.css'
+import '../css/clueCard.css'
 import '../css/overlay.css'
 function Cluecard({clueNo,clueText,setShowClue}){
     return (
