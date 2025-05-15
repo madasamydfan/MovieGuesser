@@ -44,7 +44,7 @@ async function runInitScript() {
     conn.release();
   }
 }
-runInitScript();
+// runInitScript();
 
 // ✅ Export pool after it's declared
 module.exports = pool;
