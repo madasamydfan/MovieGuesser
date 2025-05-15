@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./components/homepage";
+import HomePage from "./components/Homepage";
 import MovieguessPage from "./components/MovieguessPage";
 import Leaderboard from "./components/leaderboard";
 import Instructions from "./components/instructions";
