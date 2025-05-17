@@ -11,7 +11,7 @@ function HomePage(){
         <>
         <div className="movie-guess-container">
         <h1>Movie Guesser</h1>
-        <button className="Aramikalaama" onClick={handlegetstarted}>AARAMIKALAAMA <span className="dots"></span></button>
+        <button className="start-button" onClick={handlegetstarted}>Aarambikalaama <span className="dots"></span></button>
         </div>
     </>
     )

@@ -1,69 +1,90 @@
-
-.movie-guess-container{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
+.movie-guess-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 }
 
-h1{
-    font-size: 20dvh;
-    text-align: center;
-    color:rgba(255, 18, 18, 0.901);
-    font-family: "Impact";
-    opacity: 60%;
-    letter-spacing: 15px;
-    text-transform: uppercase;
+h1 {
+  font-size: 20dvh;
+  text-align: center;
+  color: rgba(255, 18, 18, 0.901);
+  font-family: "Impact";
+  opacity: 60%;
+  letter-spacing: 15px;
+  text-transform: uppercase;
 }
 .dots::after {
-    content: '.';
-    animation: dots 1.5s steps(1, end) infinite;
+  content: ".";
+  animation: dots 1.5s steps(1, end) infinite;
 }
 @keyframes dots {
-    0%   { content: '.'; }
-    33%  { content: '..'; }
-    66%  { content: '...'; }
-    100% { content: '.'; }
+  0% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+  100% {
+    content: ".";
+  }
 }
 
-.Aramikalaama{
-  border-radius: 8px;
-  height: 10%;
+.start-button {
+  height: 7%;
   width: 15%;
-  font-weight: 800;
-  cursor: pointer;
-  color: rgb(251, 2, 2);
-  background-color: rgba(30, 30, 30, 0.95);
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.125);
+  color: rgba(255, 18, 18, 0.901);
+  font-size: larger;
+  font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
-.Aramikalaama:hover{
-    height: 8%;
-    width: 20%;    
-    border-radius: 15px;
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: red;
-    font-size: xx-large;
-    letter-spacing: 2px;
+.Aramikalaama:hover {
+  height: 8%;
+  width: 20%;
+  border-radius: 15px;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: red;
+  font-size: xx-large;
+  letter-spacing: 2px;
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 10dvh;
-        letter-spacing: 5px;
-    }
+  h1 {
+    font-size: 10dvh;
+    letter-spacing: 5px;
+  }
 
-    .Aramikalaama {
-        width: 80%;
-        opacity: 60%;
-        font-size: 25px;
-        background-color: rgb(0, 0, 0);
-    }
+  .start-button {
+    height: 5%;
+    width: 50%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.125);
+    color: rgba(255, 18, 18, 0.901);
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+  }
+  .start-button:hover {
+    background-color: rgba(39, 2, 2, 0.125);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+  }
 }

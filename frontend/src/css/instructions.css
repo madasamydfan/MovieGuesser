@@ -20,7 +20,7 @@
   color: white;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  width: 70%;
+  width: 30%;
   margin-bottom: 20px;
   overflow-y: auto;
 }
@@ -53,4 +53,10 @@
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width:768px){
+  .instructions-box{
+    width: 70%;
+  }
 }
