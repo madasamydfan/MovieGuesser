@@ -5,7 +5,7 @@ async function nextClue(imdb_id, clue_no) {
   //console.log(imdb_id,clue_no);
   try {
     let res = await conn.query(
-      `SELECT clue FROM Clues WHERE imdb_id  = ? LIMIT 1 OFFSET ?`,
+      `SELECT clue FROM clues WHERE imdb_id  = ? LIMIT 1 OFFSET ?`,
       [imdb_id, clue_no]
     );
     // console.log(res);

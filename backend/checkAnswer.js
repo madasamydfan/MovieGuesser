@@ -10,7 +10,7 @@ async function checkAnswerwithAI(userAnswer, id) {
     conn = await pool.getConnection();
    // console.log(id)
     const [rows] = await conn.query(
-      `SELECT movie_name FROM Questions WHERE imdb_id = ?`,
+      `SELECT movie_name FROM questions WHERE imdb_id = ?`,
       [id]
     );
    // console.log(rows)
