@@ -9,7 +9,7 @@ function ScoreCard(props) {
     // console.log("hi");
     try {
       const topscorers = await axios.post(
-        "http://localhost:5172/movieguess",
+       `${import.meta.env.VITE_BACKEND_URL}/movieguess`,
         {
           username: name,
           score: score,
