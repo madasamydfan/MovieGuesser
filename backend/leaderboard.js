@@ -4,7 +4,7 @@ async function leaderboard(username,score){
     let conn;
     try{
         conn = await pool.getConnection();
-        await conn.query(`INSERT INTO Leaderboard (username, score) VALUES (?, ?)`, [username, score]);
+        await conn.query(`INSERT INTO leaderboard (username, score) VALUES (?, ?)`, [username, score]);
         const leaderboard = await conn.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT 15`);
         console.log(leaderboard[0])
         return leaderboard[0];

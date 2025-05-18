@@ -3,13 +3,14 @@ import "../css/instructions.css";
 
 function Instructions() {
   const navigate = useNavigate()
-  const instructions = [
-    "1. The game consists of 10 rounds.",
-    "2. Each round will show you a movie poster.",
-    "3. You have to guess the name of the movie.",
-    "4. You can use hints if you get stuck.",
-    "5. The game ends after 10 rounds, and your score will be displayed.",
-  ];
+const instructions = [
+  "1. A plot of the movie will appear on the screen.",
+  "2. Type the correct movie name and check your answer.",
+  "3. If correct on the first try, you get 10 points.",
+  "4. You can use up to 3 clues if you're stuck — each clue reduces 2 points and can be used only once.",
+  "5. A wrong answer or clicking quit ends the game. You'll then see your score and the leaderboard."
+];
+
   return (
     <div className="instruction-container">
       <div className="instructions-box">      

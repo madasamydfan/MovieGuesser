@@ -233,9 +233,23 @@
   letter-spacing: 10px;
 }
 .leaderboard{
-  width: 50%;
-  height: 7%;
+  height: 6%;
+  width: 40%;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.95);
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
+.leaderboard:hover{
+  background-color: rgb(127, 6, 6)  ;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
 .Username{
   width: 70%;
   height: 7%;  

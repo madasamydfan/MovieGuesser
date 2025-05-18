@@ -101,6 +101,8 @@ function MovieguessPage() {
     fetchQuestion();
   }, []);
 
+  
+
   useEffect(() => {
     if (showClue) {
       const timeout = setTimeout(() => {
