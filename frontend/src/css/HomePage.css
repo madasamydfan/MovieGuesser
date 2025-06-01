@@ -42,7 +42,7 @@ h1 {
   width: 15%;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.125);
-  color: rgba(255, 18, 18, 0.901);
+  color: rgba(255, 255, 255, 0.803);
   font-size: larger;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -51,15 +51,10 @@ h1 {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
-.Aramikalaama:hover {
-  height: 8%;
-  width: 20%;
-  border-radius: 15px;
-  text-align: center;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: red;
-  font-size: xx-large;
-  letter-spacing: 2px;
+.start-button:hover {
+ background-color: rgb(127, 6, 6)  ;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 768px) {

@@ -1,3 +1,4 @@
+const {getMovieName} = require("./getMovieName.js")
 const { GoogleGenAI } = require("@google/genai");
 const ai = new GoogleGenAI({
   apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8", // 🚨 Reminder: avoid pushing API keys in public repos
@@ -8,13 +9,14 @@ async function checkAnswerwithAI(userAnswer, id) {
   let conn;
   try {
     conn = await pool.getConnection();
-   // console.log(id)
+   console.log(id)
     const [rows] = await conn.query(
       `SELECT movie_name FROM questions WHERE imdb_id = ?`,
       [id]
     );
    // console.log(rows)
     let movie_name = rows[0].movie_name;
+    // movie_name = getMovieName(imdb_id);
     console.log("Movie name from DB:", movie_name);
     const prompt = `
 Your task is to determine if the user is referring to the same movie title as the original title.

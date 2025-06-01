@@ -43,8 +43,11 @@
     background-color: rgba(0, 0, 0, 0.295);
     display: flex;
     justify-self: center;
+    margin-bottom: 2%;
 }
+
 a{
     text-decoration: none;
     color: rgba(240, 0, 0, 0.538);
 }
+

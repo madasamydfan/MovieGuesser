@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import '../css/HomePage.css'
+import '../css/homePage.css'
 
-function HomePage(){
+function Homepage(){
     const navigate = useNavigate();
     const handlegetstarted = async()=>{
         navigate('/Instructions')
@@ -17,4 +17,4 @@ function HomePage(){
     )
 }
 
-export default HomePage;
+export default Homepage;

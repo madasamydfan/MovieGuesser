@@ -4,6 +4,7 @@ import axios from "axios";
 import "../css/overlay.css";
 import Cluecard from "./clueCard";
 import ScoreCard from "./scoreCard";
+import ReadName from "./readName";
 //const response = await axios.get("http://localhost:5173/movieguess")\
 
 function MovieguessPage() {
@@ -21,6 +22,7 @@ function MovieguessPage() {
   const [loading, setLoading] = useState(true);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [error, setError] = useState("");
+  
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -33,21 +35,22 @@ function MovieguessPage() {
           params: { type: "answerCheck" },
         }
       );
-      // console.log(response.data.answer);
+      console.log(response.data);
       if (response.data.answer.trim() === "1") {
-        setFeedbackMessage("✅ Correct!");
-        setIsCorrect(true); // Trigger the blink
+        
+        setFeedbackMessage(`✅ Correct! ${response.data.originalAnswer} is the Right Answer`);
+        setIsCorrect(true); 
+        setIsCorrect(true);// Trigger the blink
         setScore((s) => s + 10 - clueNo * 2);
         setInputText("");
         setTimeout(() => {
           setIsCorrect(false); // Reset the "correct" state after 1 second
           setFeedbackMessage(""); // Clear the feedback message
           fetchQuestion(); // Fetch the next question
-        }, 1000);
+        }, 3000);
       } else {
-        setFeedbackMessage("❌ Wrong Answer");
-        setTimeout(() => setFeedbackMessage(""), 1500);
-        setShowScore(true);
+        setFeedbackMessage(`❌ Wrong Answer,Original Answer is ${response.data.originalAnswer}`);
+        setTimeout(() => {setFeedbackMessage("");setShowScore(true)}, 3000);
       }
     } catch (error) {
       console.error(error);
@@ -107,7 +110,7 @@ function MovieguessPage() {
     if (showClue) {
       const timeout = setTimeout(() => {
         setShowClue(false);
-      }, 5000); // 5000ms = 5 seconds
+      }, 8000); // 5000ms = 5 seconds
       return () => clearTimeout(timeout); // Cleanup if component unmounts or showClue changes
     }
   }, [showClue]);
@@ -115,22 +118,7 @@ function MovieguessPage() {
   return (
     <>
       {showNameCard && (
-        <div className="name-card">
-          <input
-            type="text"
-            placeholder="Type your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="Username"
-          />
-          <button
-            className="submit-name-button"
-            onClick={() => setshowNameCard(false)}
-            disabled={!name.trim()}
-          >
-            Sumbit
-          </button>
-        </div>
+      <ReadName setName={setName} setshowNameCard={setshowNameCard} name={name}></ReadName>
       )}
       {feedbackMessage && (
         <div className="feedback-message">{feedbackMessage}</div>
@@ -145,7 +133,7 @@ function MovieguessPage() {
           setShowClue={setShowClue}
         ></Cluecard>
       )}
-      {showScore && <ScoreCard score={score} name={name}></ScoreCard>}
+      {showScore && <ScoreCard score={score} name={name} ></ScoreCard>}
       <div
         className={`question-page-container ${
           isCorrect ? "correct-blink" : ""
@@ -157,6 +145,7 @@ function MovieguessPage() {
           <>
             <div className="question-box">
               <div className="question-title">Guess the Movie?</div>
+              <div className="underline"></div>
               <div className="question-text">{question}</div>
             </div>
             <div className="input-clues-container">
@@ -173,18 +162,18 @@ function MovieguessPage() {
             <div className="check-and-quit-button">
               <button
                 className="AnswerCheckButton"
-                onClick={handleAnswerCheck}
-                disabled={!inputText.trim()}
-              >
-                Check
-              </button>
-              <button
-                className="AnswerCheckButton"
                 onClick={() => {
                   setShowScore(true);
                 }}
               >
                 Quit
+              </button>
+              <button
+                className="AnswerCheckButton"
+                onClick={handleAnswerCheck}
+                disabled={!inputText.trim()}
+              >
+                Check
               </button>
             </div>
           </>

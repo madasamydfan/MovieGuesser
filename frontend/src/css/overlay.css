@@ -116,63 +116,8 @@
 } 
 
 .leaderboard{
-  background: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(10px);
-  text-align: center;
-  border-radius: 15px;
-  margin: 30px auto;
-  color: white;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  height: 8%;
+  height: 6%;
   width: 10%;
-  cursor: pointer;
-}
-
-.name-card {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100dvw;
-  height: 100dvh;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.9),
-    rgba(20, 20, 20, 0.95)
-  ); /* subtle gradient */
-  z-index: 998;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5%;
-  backdrop-filter: blur(4px); /* slight blur for depth */
-}
-
-.Username {
-  height: 5%;
-  width: 20%;
-  background-color: rgba(10, 10, 10, 0.95);
-  border-radius: 12px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(129, 3, 3);
-  border: 1px solid rgba(232, 232, 232, 0.144);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
-}
-.Username::placeholder {
-  color:rgb(127, 6, 6); /* white with 50% opacity */
-  letter-spacing: 3px;
-  font-weight: normal;
-}
-.Username:focus{
-  outline: none;
-  border: 2px solid rgb(127, 6, 6);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-.submit-name-button {
-  height: 5%;
-  width: 6%;
   border-radius: 8px;
   background-color: rgba(30, 30, 30, 0.95);
   color: white;
@@ -182,12 +127,14 @@
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
-
-.submit-name-button:hover {
+.leaderboard:hover{
   background-color: rgb(127, 6, 6)  ;
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
 }
+
+
+
 
 
 @media (max-width:768px) {
@@ -250,14 +197,4 @@
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
 }
 
-.Username{
-  width: 70%;
-  height: 7%;  
-}
-.submit-name-button {
-  width: 25%;
-  height: 7%;
-  font-size: small;
-  letter-spacing: 2px;
-}
 }

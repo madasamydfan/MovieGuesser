@@ -8,6 +8,7 @@ async function nextClue(imdb_id, clue_no) {
       `SELECT clue FROM clues WHERE imdb_id  = ? LIMIT 1 OFFSET ?`,
       [imdb_id, clue_no]
     );
+    
     // console.log(res);
     return res[0];
   } catch (error) {

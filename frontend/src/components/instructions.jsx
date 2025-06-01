@@ -15,6 +15,7 @@ const instructions = [
     <div className="instruction-container">
       <div className="instructions-box">      
         <div className="instructions-heading">Instructions</div>
+         <div className="underline"></div>
         {instructions.map((instruction, index) => (
           <p className="instruction-text" key={index + 1}>
             {instruction}
