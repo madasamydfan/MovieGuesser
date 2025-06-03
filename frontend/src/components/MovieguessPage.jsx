@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import "../css/MovieguessPage.css";
 import axios from "axios";
 import "../css/overlay.css";
-import Cluecard from "./clueCard";
+import Clue from "./Clue";
 import ScoreCard from "./scoreCard";
 import ReadName from "./readName";
 //const response = await axios.get("http://localhost:5173/movieguess")\
 
-function MovieguessPage() {
+function MovieGuessPage() {
   const [question, setQuestion] = useState("");
   const [questionNo, setQuestionNo] = useState("");
   const [inputText, setInputText] = useState("");
@@ -127,11 +127,11 @@ function MovieguessPage() {
       {error && <div className="error-message">{error}</div>}
 
       {showClue && (
-        <Cluecard
+        <Clue
           clueText={clueText}
           clueNo={clueNo}
           setShowClue={setShowClue}
-        ></Cluecard>
+        ></Clue>
       )}
       {showScore && <ScoreCard score={score} name={name} ></ScoreCard>}
       <div
@@ -183,4 +183,4 @@ function MovieguessPage() {
   );
 }
 
-export default MovieguessPage;
+export default MovieGuessPage;

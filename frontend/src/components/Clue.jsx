@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import '../css/clueCard.css'
 import '../css/overlay.css'
-function Cluecard({clueNo,clueText,setShowClue}){
+function Clue({clueNo,clueText,setShowClue}){
     return (
         <div className="clue-overlay">
           <button className="close-btn" onClick={() => setShowClue(false)}>
@@ -16,4 +16,4 @@ function Cluecard({clueNo,clueText,setShowClue}){
     )
 }
 
-export default Cluecard;
+export default Clue;

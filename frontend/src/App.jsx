@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-import MovieguessPage from "./components/MovieguessPage";
+import MovieGuessPage from "./components/MovieGuessPage";
 import Leaderboard from "./components/Leaderboard";
 import Instructions from "./components/Instructions";
 
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/movieguess" element={<MovieguessPage />} />
+        <Route path="/movieguess" element={<MovieGuessPage />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/instructions" element={<Instructions />} />
       </Routes>
