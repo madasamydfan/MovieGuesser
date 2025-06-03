@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import '../css/leaderboard.css';
-function Leaderboard() {
+function Leader() {
    const location = useLocation();
    const data = location.state?.leaderboard || [];    
   return (
@@ -36,4 +36,4 @@ function Leaderboard() {
   );
 }
 
-export default Leaderboard;
+export default Leader;
