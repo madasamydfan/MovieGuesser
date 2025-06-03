@@ -1,13 +1,13 @@
 const express = require("express");
 const axios = require("axios");
-const { nextClue } = require("../getNextClue");
-const { nextQuestion } = require("../getnextQuestion");
-const { leaderboard } = require("../leaderboard");
+const { nextClue } = require("./getNextClue");
+const { nextQuestion } = require("./getnextQuestion");
+const { leaderboard } = require("./leaderboard");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { checkAnswerwithAI } = require("../checkAnswer");
+const { checkAnswerwithAI } = require("./checkAnswer");
 const dotenv = require("dotenv");
-const serverless = require("serverless-http");
+// const serverless = require("serverless-http");
 
 dotenv.config();
 
@@ -84,8 +84,8 @@ app.post("/movieguess", async (req, res) => {
 // const PORT = process.env.PORT || 8080;
 const PORT = process.env.PORT || 5172;
 console.log("PORT from env:", process.env.PORT);
-// app.listen(PORT, '0.0.0.0', () => {
-//   console.log(`✅ Server is running on port ${PORT}`);
-// });
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+});
 
-module.exports = serverless(app);
+// module.exports = serverless(app);
