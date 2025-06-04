@@ -30,6 +30,10 @@
 .Leaderboard-table tr:hover {
   transform: scale(1.03);
 }
+.Leaderboard-table tr:first-child {
+  cursor: pointer;
+  color: white;
+}
 
 .PlayAgain{
     padding: 12px 25px;

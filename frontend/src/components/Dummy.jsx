@@ -15,23 +15,44 @@ function Leader() {
             <th>Score</th>
           </tr>
         </thead>
-        <tbody>
-          {data.map((item,index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{item.username}</td>
-              <td>{item.score}</td>
-            </tr>
-          ))}
-        </tbody>
+      <tbody>
+  {data.map((item, index) => {
+    if (index === 0) {
+      return (
+        <a
+          href="https://instagram.com/madasamy_dfan"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'contents' }} // Makes <a> transparent
+          key={index}
+        >
+          <tr>
+            <td>{index + 1}</td>
+            <td>{item.username}</td>
+            <td>{item.score}</td>
+          </tr>
+        </a>
+      );
+    } else {
+      return (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{item.username}</td>
+          <td>{item.score}</td>
+        </tr>
+      );
+    }
+  })}
+</tbody>
+
       </table>
     </div>
 
-    <button className='PlayAgain'>
+    {/* <button className='PlayAgain'>
       <a href="/movieguess" className="play-again-button">
         Play Again
       </a>
-    </button>
+    </button> */}
     </>
   );
 }
