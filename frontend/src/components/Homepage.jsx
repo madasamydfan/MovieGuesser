@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import '../css/Homepage.css';
-
+import '../css/homepage.css';
 function Homepage(){
     const navigate = useNavigate();
     const handlegetstarted = async()=>{
