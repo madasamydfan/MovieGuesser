@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../css/overlay.css'
+import '../css/Overlay.css'
 function ScoreCard(props) {
   const navigate = useNavigate();
 

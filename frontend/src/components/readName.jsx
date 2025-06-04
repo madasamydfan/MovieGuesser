@@ -1,4 +1,4 @@
-import '../css/readName.css'
+import '../css/ReadName.css'
 function ReadName({setName,setshowNameCard,name}){
     return(
         <>

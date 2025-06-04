@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import '../css/leaderboard.css';
+import '../css/Leaderboard.css';
 function Leader() {
    const location = useLocation();
    const data = location.state?.leaderboard || [];    
