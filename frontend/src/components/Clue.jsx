@@ -12,7 +12,6 @@ function Clue({clueNo,clueText,setShowClue}){
             <p className="clueText">{clueText}</p>
           </div>
         </div>
-
     )
 }
 

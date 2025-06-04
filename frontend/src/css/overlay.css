@@ -1,6 +1,6 @@
 .clue-overlay {
   position: fixed;
-  top: 25%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -100%);
   background: rgba(0, 0, 0, 0.593);
@@ -76,6 +76,7 @@
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
 
 .gameover-title {
   color: red;
