@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/MovieguessPage.css";
 import axios from "axios";
-import "../css/Overlay.css";
+import "../css/overlay.css";
 import Clue from "./Clue";
 import ScoreCard from "./scoreCard";
 import ReadName from "./readName";

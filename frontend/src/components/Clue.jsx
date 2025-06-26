@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import '../css/Cluecard.css'
-import '../css/Overlay.css'
+import '../css/clueCard.css'
+import '../css/overlay.css'
 function Clue({clueNo,clueText,setShowClue}){
     return (
         <div className="clue-overlay">
