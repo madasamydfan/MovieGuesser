@@ -37,17 +37,14 @@
 
 .PlayAgain{
     padding: 12px 25px;
+    border: 0;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+    margin-top: 2%;
     color: rgb(200, 200, 200);
-    border: 2px solid rgba(103, 0, 0, 0.389);
-    box-shadow: 2px 2px 5px rgba(223, 0, 0, 0.295);
     background-color: rgba(0, 0, 0, 0.295);
-    display: flex;
-    justify-self: center;
-    margin-bottom: 2%;
 }
 
 a{

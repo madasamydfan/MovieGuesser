@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import MovieGuessPage from "./components/MovieguessPage";
-import Leader from "./components/Dummy";
+import Leader from "./components/Leaderboard";
 import Instructions from "./components/instructions";
 
 function App() {

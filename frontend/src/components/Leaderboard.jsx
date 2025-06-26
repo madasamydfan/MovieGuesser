@@ -46,13 +46,15 @@ function Leader() {
 </tbody>
 
       </table>
-    </div>
-
-    {/* <button className='PlayAgain'>
+      <p className="leaderboard-note">
+        Note:  If you don't see your score,You have not made to top 15 , Go watch some movies and come back again.
+      </p>
+       <button className='PlayAgain'>
       <a href="/movieguess" className="play-again-button">
         Play Again
       </a>
-    </button> */}
+    </button>
+    </div>
     </>
   );
 }
