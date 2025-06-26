@@ -1,7 +1,8 @@
 const {getMovieName} = require("./getMovieName.js")
 const { GoogleGenAI } = require("@google/genai");
+require('dotenv').config();
 const ai = new GoogleGenAI({
-  apiKey: "AIzaSyDVh4LOsByojljF3XEtSRHaZA7qSojJQ-8", // 🚨 Reminder: avoid pushing API keys in public repos
+  apiKey: process.env.GEMINI_API_KEY, 
 });
 const pool = require("./forCreatingDataset/db");
 
