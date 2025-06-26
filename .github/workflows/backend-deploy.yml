@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # or 22 if your code needs it
+          node-version: '18'
 
       - name: Install dependencies
         run: |
@@ -26,6 +26,6 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: movieguesser-backend  # Replace with your exact App Service name
+          app-name: movieguesser-backend  # Change this to your actual backend App Service name
           slot-name: Production
           package: ./backend
