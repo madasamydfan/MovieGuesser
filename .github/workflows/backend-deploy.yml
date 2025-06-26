@@ -11,21 +11,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # or 22 if your backend uses that
+          node-version: '18'  # or 22 if your code needs it
 
       - name: Install dependencies
         run: |
           cd backend
           npm install
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: movieguesser-backend  # ⬅️ CHANGE this to your actual backend app name in Azure
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          app-name: movieguesser-backend  # Replace with your exact App Service name
+          slot-name: Production
           package: ./backend
