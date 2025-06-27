@@ -11,6 +11,9 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT || 3306 ,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+   ssl: {
+    rejectUnauthorized: true
+  }
   // host: "localhost",
   // port:3306,
   // user: "root",
