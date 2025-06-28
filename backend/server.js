@@ -8,7 +8,7 @@ const cors = require("cors");
 const { checkAnswerwithAI } = require("./checkAnswer");
 const dotenv = require("dotenv");
 // const serverless = require("serverless-http");
-
+const pool  = require("./forCreatingDataset/db");
 dotenv.config();
 
 const app = express();

@@ -13,9 +13,6 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
    ssl: {
     rejectUnauthorized: true
-  }
-   ssl: {
-    rejectUnauthorized: false      // required for Azure MySQL SSL
   },
   // host: "localhost",
   // port:3306,
