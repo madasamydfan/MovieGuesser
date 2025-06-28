@@ -20,6 +20,19 @@ app.get("/", (req, res) => {
   return res.send("Welcome to the Rest API");
 });
 
+app.get('/testdb', async (req, res) => {
+  try {
+    const conn = await pool.getConnection();
+    const [rows] = await conn.query('SELECT 1 + 1 AS solution');
+    conn.release();
+    res.send('DB works: ' + rows[0].solution);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('DB Error');
+  }
+});
+
+
 app.get("/movieguess", async (req, res) => {
   try{
     const response = await nextQuestion();
