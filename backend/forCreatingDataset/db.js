@@ -1,8 +1,8 @@
 const mysql = require("mysql2/promise");
 const fs = require("fs");
 const  dotenv = require('dotenv');
-dotenv.config('./.env'); // Load environment variables from .env file
-
+// dotenv.config('./.env'); // Load environment variables from .env file
+dotenv.config();
 console.log("USER:", process.env.DB_USER);
 
 const pool = mysql.createPool({
@@ -14,12 +14,28 @@ const pool = mysql.createPool({
    ssl: {
     rejectUnauthorized: true
   }
+   ssl: {
+    rejectUnauthorized: false      // required for Azure MySQL SSL
+  },
   // host: "localhost",
   // port:3306,
   // user: "root",
   // password: "root",
   // database: "movie_db"
 });
+
+
+(async () => {
+  try {
+    const conn = await pool.getConnection();
+    console.log("✅ Connected to Azure MySQL database.");
+    conn.release();
+  } catch (err) {
+    console.error("❌ DB connection error:", err);
+  }
+})();
+
+
 
 // ✅ Optional: Run your init script
 async function runInitScript() {
