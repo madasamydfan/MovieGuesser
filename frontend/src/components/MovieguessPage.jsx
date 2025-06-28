@@ -5,7 +5,7 @@ import "../css/overlay.css";
 import Clue from "./Clue";
 import ScoreCard from "./scoreCard";
 import ReadName from "./readName";
-//const response = await axios.get("http://localhost:5173/movieguess")\
+
 
 function MovieGuessPage() {
   const [question, setQuestion] = useState("");
