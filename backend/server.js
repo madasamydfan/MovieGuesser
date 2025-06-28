@@ -12,7 +12,10 @@ const pool  = require("./forCreatingDataset/db");
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // or better: only your static frontend URL
+}));
+
 app.use(bodyParser.json());
 app.use(express.json());
 
