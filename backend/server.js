@@ -27,10 +27,11 @@ app.get('/testdb', async (req, res) => {
     conn.release();
     res.send('DB works: ' + rows[0].solution);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('DB Error');
+    console.error('❌ Full DB error:', err);
+    res.status(500).send('DB Error: ' + err.message);
   }
 });
+
 
 
 app.get("/movieguess", async (req, res) => {
