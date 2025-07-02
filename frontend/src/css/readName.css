@@ -25,6 +25,7 @@
   letter-spacing: 5px;
   text-transform: uppercase;
   text-align: center;
+  font-family: 'Anton';
   font-weight: bold;
   color: rgb(129, 3, 3);
   border: 1px solid rgba(232, 232, 232, 0.144);
@@ -47,7 +48,8 @@
   border-radius: 8px;
   background-color: rgba(30, 30, 30, 0.95);
   color: white;
-  font-weight: 600;
+  font-weight: 50;
+  font-family: 'Anton';
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;

@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import '../css/overlay.css'
 function ScoreCard(props) {
   const navigate = useNavigate();
-
+  console.log("Name at ScoreCard", props.name);
+  // const name = state.location?.name || "";
+  // const score = state.location?.score || 0;
   async function handlegetLeaderboard(name, score) {
     // alert("LeaderBoard feature will be added soon");
     // console.log("hi");
@@ -18,13 +20,13 @@ function ScoreCard(props) {
       );
       // console.log(topscorers.data);
       navigate("/leaderboard", {
-        state: { leaderboard: topscorers.data },
+        state: { leaderboard: topscorers.data , name:name},
       });
     } catch (error) {
       console.log("Error in getting leaderboard", error);
     }
   }
-  console.log(props.score, props.name);
+ // console.log(props.score, props.name);
   return (
     <>
       <div className="score-overlay">
@@ -34,7 +36,7 @@ function ScoreCard(props) {
           className="leaderboard"
           onClick={() => {
             // console.log(props.name, props.score);
-            handlegetLeaderboard(props.name, props.score);
+            handlegetLeaderboard(props.name,props.score);
           }}
         >
           Leaderboard

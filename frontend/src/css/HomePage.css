@@ -13,7 +13,7 @@ h1 {
   font-size: 20dvh;
   text-align: center;
   color: rgb(189, 0, 0);
-  font-family: "Impact", sans-serif;
+  font-family: 'Anton', sans-serif;
   opacity: 60%;
   letter-spacing: 15px;
   text-transform: uppercase;
@@ -41,11 +41,11 @@ h1 {
   height: 7%;
   width: 15%;
   border-radius: 8px;
-  background-color: rgba(161, 0, 0, 0.841);
+  background-color: rgba(161, 0, 0, 0);
   color: rgba(223, 223, 223, 0.803);
-  font-size: 1rem;
+  font-family: 'Anton', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: .2cap;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
@@ -68,11 +68,11 @@ h1 {
     height: 5%;
     width: 50%;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.125);
-    color: rgba(255, 18, 18, 0.901);
+    background-color:rgba(172, 0, 0, 0.737);
+    color: rgba(255, 255, 255, 0.901);
     font-size: small;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 200;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;

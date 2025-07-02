@@ -24,7 +24,7 @@ const instructions = [
           </p>
         ))}
       </div>
-      <button className="Get-Started-button" onClick={() => {navigate('../movieguess')}}>Get Started</button>
+      <button className="Get-Started-button" onClick={() => {navigate('/readname')}}>Get Started</button>
     </div>
   );
 }

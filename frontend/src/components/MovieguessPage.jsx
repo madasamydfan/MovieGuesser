@@ -4,8 +4,7 @@ import axios from "axios";
 import "../css/overlay.css";
 import Clue from "./Clue";
 import ScoreCard from "./scoreCard";
-import ReadName from "./readName";
-
+import { useLocation } from "react-router-dom";
 
 function MovieGuessPage() {
   const [question, setQuestion] = useState("");
@@ -17,12 +16,16 @@ function MovieGuessPage() {
   const [clueText, setClueText] = useState("");
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [name, setName] = useState("");
-  const [showNameCard, setshowNameCard] = useState(true);
+  // const [name, setName] = useState("");
+  // const [showNameCard, setshowNameCard] = useState(true);
   const [loading, setLoading] = useState(true);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [error, setError] = useState("");
-  
+
+const location = useLocation();
+// console.log(location.state);
+const name = location.state?.name || "";
+// console.log("Name at MovieGuessPage", name);
   async function handleAnswerCheck() {
     try {
       const response = await axios.post(
@@ -114,12 +117,11 @@ function MovieGuessPage() {
       return () => clearTimeout(timeout); // Cleanup if component unmounts or showClue changes
     }
   }, [showClue]);
+ 
+
 
   return (
     <>
-      {showNameCard && (
-      <ReadName setName={setName} setshowNameCard={setshowNameCard} name={name}></ReadName>
-      )}
       {feedbackMessage && (
         <div className="feedback-message">{feedbackMessage}</div>
       )}
@@ -133,7 +135,7 @@ function MovieGuessPage() {
           setShowClue={setShowClue}
         ></Clue>
       )}
-      {showScore && <ScoreCard score={score} name={name} ></ScoreCard>}
+      {showScore && <ScoreCard score={score} name={name}></ScoreCard>}
       <div
         className={`question-page-container ${
           isCorrect ? "correct-blink" : ""

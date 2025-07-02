@@ -4,6 +4,7 @@ import Homepage from "./components/Homepage";
 import MovieGuessPage from "./components/MovieguessPage";
 import Leader from "./components/Leaderboard";
 import Instructions from "./components/instructions";
+import ReadName from "./components/readName";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/movieguess" element={<MovieGuessPage />} />
         <Route path="/leaderboard" element={<Leader />} />
         <Route path="/instructions" element={<Instructions />} />
+        <Route path="/readname" element={<ReadName />} />
       </Routes>
     </Router>
   );
