@@ -18,6 +18,8 @@ function MovieGuessPage() {
   const [showScore, setShowScore] = useState(false);
   // const [name, setName] = useState("");
   // const [showNameCard, setshowNameCard] = useState(true);
+  const[checkdisablebutton,setCheckdisablebutton] = useState(true);
+  const[disablecluebutton,setDisablecluebutton] = useState(false);
   const [loading, setLoading] = useState(true);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [error, setError] = useState("");
@@ -28,6 +30,7 @@ const name = location.state?.name || "";
 // console.log("Name at MovieGuessPage", name);
   async function handleAnswerCheck() {
     try {
+      setCheckdisablebutton(false);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/movieguess`,
         {
@@ -43,9 +46,10 @@ const name = location.state?.name || "";
         
         setFeedbackMessage(`✅ Correct! ${response.data.originalAnswer} is the Right Answer`);
         setIsCorrect(true); 
-        setIsCorrect(true);// Trigger the blink
+       // setIsCorrect(true);// Trigger the blink
         setScore((s) => s + 10 - clueNo * 2);
         setInputText("");
+        setCheckdisablebutton(true);
         setTimeout(() => {
           setIsCorrect(false); // Reset the "correct" state after 1 second
           setFeedbackMessage(""); // Clear the feedback message
@@ -62,10 +66,12 @@ const name = location.state?.name || "";
   }
 
   const handlegetClue = async () => {
+    setDisablecluebutton(true);
     try {
       setClueNo((c) => c + 1);
       if (clueNo >= 3) {
-        alert("No more clues available");
+        // alert("No more clues available");
+        setFeedbackMessage("❌ No more clues available");
         return;
       }
       // console.log(clueNo, questionNo);
@@ -80,6 +86,9 @@ const name = location.state?.name || "";
       // console.log(response.data);
       setClueText(response.data.clue);
       setShowClue(true);
+      setTimeout(() => {
+        setDisablecluebutton(false);
+      }, 5000); // Re-enable the clue button after 8 seconds)
       // console.log("question no at time of clue", questionNo);
     } catch (error) {
       console.error(error);
@@ -159,7 +168,7 @@ const name = location.state?.name || "";
                 onChange={(e) => setInputText(e.target.value)}
                 disabled={isCorrect}
               />
-              <button className="bulb-button" onClick={handlegetClue}  disabled={clueNo >= 3}></button>
+              <button className="bulb-button" onClick={handlegetClue}  disabled={disablecluebutton}></button>
             </div>
             <div className="check-and-quit-button">
               <button
@@ -173,7 +182,7 @@ const name = location.state?.name || "";
               <button
                 className="AnswerCheckButton"
                 onClick={handleAnswerCheck}
-                disabled={!inputText.trim()}
+                disabled={!(inputText.trim() && checkdisablebutton)}
               >
                 Check
               </button>
