@@ -33,7 +33,7 @@ function Leader(props) {
               if (index === 0) {
                 return (
                   <a
-                    href="https://instagram.com/madasamy_dfan"
+                    // href="https://instagram.com/madasamy_dfan"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ display: "contents" }} // Makes <a> transparent
